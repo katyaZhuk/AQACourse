@@ -2,20 +2,10 @@ package senla.addressbook;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.time.Duration;
 
 public class Methods {
 
-    WebDriver driver;
-
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts()
-                .implicitlyWait(Duration.ofSeconds(5000));
-    }
+    WebDriver driver = Driver.getChromeDriver();
 
     public void openPage(String url) {
         driver.get(url);

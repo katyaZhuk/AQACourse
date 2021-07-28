@@ -1,47 +1,47 @@
 package senla.addressbook;
 
-import org.openqa.selenium.By;
+import static senla.addressbook.Locators.*;
 
 public class Tests extends Methods {
 
     public void testLogin(String username, String password) {
-        enterValueToField(By.id("session_email"), username);
-        enterValueToField(By.id("session_password"), password);
-        clickOnElement(By.cssSelector(".btn.btn-primary"));
+        enterValueToField(EMAIL_LOCATOR, username);
+        enterValueToField(PASSWORD_LOCATOR, password);
+        clickOnElement(SIGNIN_BUTTON_LOCATOR);
     }
 
     public void testAddAddress(String name, String lastName,
                                String address, String city, String zipCode) {
-        clickOnElement(By.xpath("//a[contains(text(), 'Addresses')]"));
-        clickOnElement(By.xpath("//a[contains(text(), 'New Address')]"));
-        enterValueToField(By.id("address_first_name"), name);
-        enterValueToField(By.id("address_last_name"), lastName);
-        enterValueToField(By.id("address_street_address"), address);
-        enterValueToField(By.id("address_city"), city);
-        enterValueToField(By.id("address_zip_code"), zipCode);
-        clickOnElement(By.name("commit"));
+        clickOnElement(ADDRESSES_LINK_LOCATOR);
+        clickOnElement(NEW_ADDRESS_LINK_LOCATOR);
+        enterValueToField(FIRST_NAME_LOCATOR, name);
+        enterValueToField(LAST_NAME_LOCATOR, lastName);
+        enterValueToField(STREET_LOCATOR, address);
+        enterValueToField(CITY_LOCATOR, city);
+        enterValueToField(ZIP_CODE_LOCATOR, zipCode);
+        clickOnElement(CREATE_ADDRESS_BUTTON_LOCATOR);
     }
 
     public void testEditAddress(String address, String city, String zipCode) {
-        clickOnElement(By.xpath("//a[contains(text(), 'Addresses')]"));
-        clickOnElement(By.xpath("//a[contains(text(), 'Edit')]"));
-        clearField(By.id("address_street_address"));
-        enterValueToField(By.id("address_street_address"), address);
-        clearField(By.id("address_city"));
-        enterValueToField(By.id("address_city"), city);
-        clearField(By.id("address_zip_code"));
-        enterValueToField(By.id("address_zip_code"), zipCode);
-        clickOnElement(By.cssSelector("[value='Update Address']"));
+        clickOnElement(ADDRESSES_LINK_LOCATOR);
+        clickOnElement(EDIT_LINK_LOCATOR);
+        clearField(STREET_LOCATOR);
+        enterValueToField(STREET_LOCATOR, address);
+        clearField(CITY_LOCATOR);
+        enterValueToField(CITY_LOCATOR, city);
+        clearField(ZIP_CODE_LOCATOR);
+        enterValueToField(ZIP_CODE_LOCATOR, zipCode);
+        clickOnElement(UPDATE_ADDRESS_BUTTON_LOCATOR);
     }
 
     public void testDeleteAddress() {
-        clickOnElement(By.xpath("//a[contains(text(), 'Addresses')]"));
-        clickOnElement(By.xpath("//a[contains(text(), 'Destroy')]"));
+        clickOnElement(ADDRESSES_LINK_LOCATOR);
+        clickOnElement(DESTROY_LINK_LOCATOR);
         acceptAlert();
     }
 
     public void testLogout() {
-        clickOnElement(By.linkText("Sign out"));
+        clickOnElement(SIGNOUT_LINK_LOCATOR);
     }
 
 }
