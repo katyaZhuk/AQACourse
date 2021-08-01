@@ -24,8 +24,13 @@ public class Locators {
 
     public final static By SIGNOUT_LINK_LOCATOR = By.linkText("Sign out");
 
-    public final static By HOME_PAGE_LOCATOR = By.xpath("//h1[contains(text(), 'Welcome to Address Book')]");
+//    public final static By HOME_PAGE_LOCATOR = By.xpath("//h1[contains(text(), 'Welcome to Address Book')]");
+
+    public final static By ALL_ADDRESSES_LOKATOR = By.cssSelector("tbody tr");
 
     public final static By LIST_LINK_LOKATOR = By.xpath("//a[contains(text(), 'List')]");
+
+    public final static By EDITED_CITY_LOKATOR = By.cssSelector("span[data-test=\"city\"]");
+
 
 }

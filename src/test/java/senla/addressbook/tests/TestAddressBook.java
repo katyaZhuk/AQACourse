@@ -28,9 +28,6 @@ public class TestAddressBook extends Methods {
                 "Wrong page or page title is not correct");
     }
 
-
-//        tests.openPage("http://a.testaddressbook.com/sign_in");
-
     @Ignore
     public void testLogin() {
         Log.info("Enter credentials for login");
@@ -50,7 +47,6 @@ public class TestAddressBook extends Methods {
         clickOnElement(ADDRESSES_LINK_LOCATOR);
         List<WebElement> beforeAddresses = findAllAddresses();
         int amountBefore = beforeAddresses.size();
-        System.out.println(amountBefore);
         Log.info("Add new address");
         Tests.addAddress("Katya", "Zhuk",
                 "Main Street, 1", "Vitebsk", "111111");
@@ -58,12 +54,28 @@ public class TestAddressBook extends Methods {
         Log.info("Check if new address is added");
         List<WebElement> afterAddresses = findAllAddresses();
         int amountAfter = afterAddresses.size();
-        System.out.println(amountAfter);
 
-//        Assertions.assertTrue(amountAfter - amountBefore == 1);
+        Assertions.assertTrue(amountAfter - amountBefore == 1);
     }
 
-//        tests.editAddress("Second St. 101","Minsk","222222");
+    @Test
+    public void testEditAddress() {
+        Log.info("Enter credentials for login");
+        Tests.login("tester115@qa.com", "test");
+
+        Tests.addAddress("Katya", "Zhuk",
+                "Main Street, 1", "Vitebsk", "111111");
+
+        Log.info("Edit address");
+        Tests.editAddress("Second St. 101","Minsk","222222");
+
+        Log.info("Check if address is changed");
+        String editedCity = getCityElement();
+
+        Assertions.assertEquals("Minsk", editedCity);
+
+    }
+
 //        tests.deleteAddress();
 //        tests.logout();
 //

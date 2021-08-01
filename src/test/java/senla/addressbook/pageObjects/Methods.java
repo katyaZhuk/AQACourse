@@ -7,6 +7,8 @@ import utils.Driver;
 
 import java.util.List;
 
+import static senla.addressbook.locators.Locators.*;
+
 public class Methods {
 
     static WebDriver driver = Driver.getChromeDriver();
@@ -41,7 +43,11 @@ public class Methods {
     }
 
     protected List<WebElement> findAllAddresses() {
-        return driver.findElements(By.cssSelector("tbody tr"));
+        return driver.findElements(ALL_ADDRESSES_LOKATOR);
+    }
+
+    protected String getCityElement() {
+        return driver.findElement(EDITED_CITY_LOKATOR).getText();
     }
 
 }
