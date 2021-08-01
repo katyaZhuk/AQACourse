@@ -1,4 +1,4 @@
-package senla.addressbook;
+package senla.addressbook.locators;
 
 import org.openqa.selenium.By;
 
@@ -23,5 +23,9 @@ public class Locators {
     public final static By DESTROY_LINK_LOCATOR = By.xpath("//a[contains(text(), 'Destroy')]");
 
     public final static By SIGNOUT_LINK_LOCATOR = By.linkText("Sign out");
+
+    public final static By HOME_PAGE_LOCATOR = By.xpath("//h1[contains(text(), 'Welcome to Address Book')]");
+
+    public final static By LIST_LINK_LOKATOR = By.xpath("//a[contains(text(), 'List')]");
 
 }

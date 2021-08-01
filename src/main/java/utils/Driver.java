@@ -1,4 +1,4 @@
-package senla.addressbook;
+package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,7 +10,7 @@ public class Driver {
 
     static WebDriver driver;
 
-    public static WebDriver getChromeDriver () {
+    public static WebDriver getChromeDriver() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts()
@@ -18,7 +18,7 @@ public class Driver {
         return driver;
     }
 
-    public static WebDriver getFirefoxDriver () {
+    public static WebDriver getFirefoxDriver() {
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
         driver = new FirefoxDriver();
         driver.manage().timeouts()
