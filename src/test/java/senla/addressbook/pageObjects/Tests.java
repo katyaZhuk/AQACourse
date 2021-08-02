@@ -11,7 +11,7 @@ public class Tests extends Methods {
     }
 
     public static void addAddress(String name, String lastName,
-                               String address, String city, String zipCode) {
+                                  String address, String city, String zipCode) {
         clickOnElement(ADDRESSES_LINK_LOCATOR);
         clickOnElement(NEW_ADDRESS_LINK_LOCATOR);
         enterValueToField(FIRST_NAME_LOCATOR, name);
@@ -20,8 +20,9 @@ public class Tests extends Methods {
         enterValueToField(CITY_LOCATOR, city);
         enterValueToField(ZIP_CODE_LOCATOR, zipCode);
         clickOnElement(CREATE_ADDRESS_BUTTON_LOCATOR);
-        clickOnElement(LIST_LINK_LOKATOR);
+        clickOnElement(LIST_LINK_LOCATOR);
     }
+
     public static void editAddress(String address, String city, String zipCode) {
         clickOnElement(ADDRESSES_LINK_LOCATOR);
         clickOnElement(EDIT_LINK_LOCATOR);

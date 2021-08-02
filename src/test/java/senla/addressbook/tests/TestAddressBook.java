@@ -2,19 +2,17 @@ package senla.addressbook.tests;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import senla.addressbook.pageObjects.Methods;
 import senla.addressbook.pageObjects.Tests;
 import utils.Log;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import static senla.addressbook.locators.Locators.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestAddressBook extends Methods {
 
     @BeforeAll
@@ -28,7 +26,8 @@ public class TestAddressBook extends Methods {
                 "Wrong page or page title is not correct");
     }
 
-    @Ignore
+    @Test
+    @Order(1)
     public void testLogin() {
         Log.info("Enter credentials for login");
         Tests.login("tester115@qa.com", "test");
@@ -40,47 +39,65 @@ public class TestAddressBook extends Methods {
     }
 
     @Test
+    @Order(3)
     public void testAddAddress() {
-        Log.info("Enter credentials for login");
-        Tests.login("tester115@qa.com", "test");
-
         clickOnElement(ADDRESSES_LINK_LOCATOR);
-        List<WebElement> beforeAddresses = findAllAddresses();
-        int amountBefore = beforeAddresses.size();
+        List<WebElement> beforeAddressesList = findAllAddresses();
+        int amountAddressesBefore = beforeAddressesList.size();
         Log.info("Add new address");
         Tests.addAddress("Katya", "Zhuk",
                 "Main Street, 1", "Vitebsk", "111111");
 
         Log.info("Check if new address is added");
-        List<WebElement> afterAddresses = findAllAddresses();
-        int amountAfter = afterAddresses.size();
+        List<WebElement> afterAddressesList = findAllAddresses();
+        int amountAddressesAfter = afterAddressesList.size();
 
-        Assertions.assertTrue(amountAfter - amountBefore == 1);
+        Assertions.assertTrue(amountAddressesAfter - amountAddressesBefore == 1,
+                "Something went wrong");
     }
 
-    @Test
+    @Ignore
     public void testEditAddress() {
-        Log.info("Enter credentials for login");
-        Tests.login("tester115@qa.com", "test");
-
         Tests.addAddress("Katya", "Zhuk",
                 "Main Street, 1", "Vitebsk", "111111");
 
         Log.info("Edit address");
-        Tests.editAddress("Second St. 101","Minsk","222222");
+        Tests.editAddress("Second St. 101", "Minsk", "222222");
 
         Log.info("Check if address is changed");
         String editedCity = getCityElement();
 
-        Assertions.assertEquals("Minsk", editedCity);
-
+        Assertions.assertEquals("Minsk", editedCity, "City is not edited");
     }
 
-//        tests.deleteAddress();
-//        tests.logout();
-//
-//        tests.finishWork();
-//}
+    @Test
+    @Order(2)
+    public void testDeleteAddress() {
+        clickOnElement(ADDRESSES_LINK_LOCATOR);
+        List<WebElement> beforeAddressesList = findAllAddresses();
+        int amountAddressesBefore = beforeAddressesList.size();
+        Log.info("Delete any address");
+        Tests.deleteAddress();
+
+        Log.info("Check if address is deleted");
+        List<WebElement> afterAddressesList = findAllAddresses();
+        int amountAddressesAfter = afterAddressesList.size();
+
+        Assertions.assertTrue(amountAddressesBefore - amountAddressesAfter == 1,
+                "Something went wrong");
+    }
+
+    @Test
+    @Order(4)
+    public void testLogout() {
+        Log.info("Logout");
+        Tests.logout();
+
+        Log.info("Check if logout is successful");
+        String pageTitle = getPageTitle();
+        Assertions.assertEquals("Address Book - Sign In", pageTitle,
+                "Something went wrong");
+    }
 
     @AfterAll
     public void tearDown() {

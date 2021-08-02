@@ -43,11 +43,11 @@ public class Methods {
     }
 
     protected List<WebElement> findAllAddresses() {
-        return driver.findElements(ALL_ADDRESSES_LOKATOR);
+        return driver.findElements(ALL_ADDRESSES_LOCATOR);
     }
 
     protected String getCityElement() {
-        return driver.findElement(EDITED_CITY_LOKATOR).getText();
+        return driver.findElement(EDITED_CITY_LOCATOR).getText();
     }
 
 }
