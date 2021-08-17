@@ -23,6 +23,6 @@
 hs_err_pid*
 
 .idea
-target\
 .allure
-allure-results\
+target/
+allure-results/
