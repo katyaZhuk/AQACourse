@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class Driver {
 
@@ -14,7 +14,7 @@ public class Driver {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts()
-                .implicitlyWait(Duration.ofSeconds(5000));
+                .implicitlyWait(5, TimeUnit.SECONDS);
         return driver;
     }
 
@@ -22,7 +22,7 @@ public class Driver {
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
         driver = new FirefoxDriver();
         driver.manage().timeouts()
-                .implicitlyWait(Duration.ofSeconds(5000));
+                .implicitlyWait(5, TimeUnit.SECONDS);
         return driver;
     }
 
